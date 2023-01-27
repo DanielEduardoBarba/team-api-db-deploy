@@ -2,7 +2,7 @@ import functions from "firebase-functions";
 import { express } from "express";
 import cors from "cors";
 
-import { getAllContacts, getContacts, createContact };
+import { getAllContacts, getContacts, createContact } from "";
 
 const app = express()
 
