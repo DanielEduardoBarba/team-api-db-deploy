@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
-import functions from "firebase-functions";
+import { dataBase } from "./dbConnect.js";
+import { FieldValue } from "firebase-admin/firestore";
+//import functions from "firebase-functions";
 
 const collectionName = "contacts"
 const app = express();
@@ -25,7 +27,7 @@ const newContact={
     notes:"cool guy"
 }
 
-    const db = dbConnect()
+    const db = dataBase
     //let newContact = req.body
 
     newContact.iat = FieldValue.serverTimestamp();
