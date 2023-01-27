@@ -11,7 +11,7 @@ app.use(express.json())
 
 //routes
 app.get('/allContacts', getAllContacts)
-app.get('/contacts', getContacts)
+app.get('/Contacts/:name', getContact)
 app.post('/Contact', createContact)
 
 

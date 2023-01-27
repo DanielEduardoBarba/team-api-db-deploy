@@ -11,15 +11,27 @@ app.use(express.json())
 // const functions = require("firebase-functions");
 
 // get all contacts
-// export async function getAllContacts(req, res) {
-//     const db = dbConnect()
-//     const collection = await db.collection(collectionName).orderBy('iat', "desc").get();
-//     const contacts = contacts.docs.map( doc => ({...doc.data(), restId: doc.id}) );
-//     res.send(contacts)
-// };
+export async function getAllContacts(req, res) {
+    const db = dataBase
 
-// create new contact
-// export async function createContacts(req, res) {
+    const collection = await db.collection(collectionName).orderBy('iat', "desc").get();
+    const contacts = collection.docs.map( doc => ({...doc.data(), ID: doc.id}) );
+
+    res.send(contacts)
+    console.table(contacts)
+};
+
+//get specific contact
+export async function getContacts(req, res) {
+    const db = dataBase
+
+    const collection = await db.collection(collectionName).orderBy('iat', "desc").get();
+    const contacts = collection.docs.map( doc => ({...doc.data(), ID: doc.id}) );
+
+    res.send(contacts)
+    console.table(contacts)
+};
+
 
 const newContact={
     name: "jimbo",
@@ -27,10 +39,16 @@ const newContact={
     notes:"cool guy"
 }
 
+// create new contact
+export async function createContacts(req, res) {
     const db = dataBase
-    //let newContact = req.body
+    let newContact = req.body
 
     newContact.iat = FieldValue.serverTimestamp();
-     db.collection(collectionName).add(newContact)
-    //res.status(201).send("Added New Contact")
-// };
+     await db.collection(collectionName).add(newContact)
+     .then(()=> {
+        res.status(201).send("Added New Contact Succesfully!")
+     })
+     .catch(console.error)
+
+};
