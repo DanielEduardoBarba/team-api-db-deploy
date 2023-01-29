@@ -1,2 +1,2 @@
-# team-api-db-deploy!!!
-# deployable API on GCP with firebase database
+# team-api-db-deploy
+# Deployable API on GCP with firebase database
