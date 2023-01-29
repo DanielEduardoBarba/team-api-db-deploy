@@ -22,20 +22,20 @@ export async function getAllContacts(req, res) {
 };
 
 //get specific contact
-//export async function getContacts(req, res) {
+export async function getContacts(req, res) {
     const db = dataBase
 
     const collection = await db.collection(collectionName).orderBy('iat', "desc").get();
     const contacts = collection.docs.map( doc => ({...doc.data(), ID: doc.id}) );
 
-   // console.log(contacts)
-const passName =contacts.filter((element, index)=>{
-       return element["name"]=="Danny"
+   // this filter the contacts by the name matching the name pass in the parameters. 
+const filteredContacts =contacts.filter((x)=>{
+       return x["name"].toLowerCase()===req.params.name.toLowerCase();
     })
 
-    //res.send(contacts)
-    console.table(passName)
-//};
+    res.send(filteredContacts)
+    console.table(filteredContacts)
+};
 
 
 const newContact={

@@ -2,7 +2,7 @@
 import functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
-import { getAllContacts, getContacts, createContact } from "";
+import { getAllContacts, getContacts, createContacts } from "./src/functions.js";
 
 const app = express();
 app.use(cors());
@@ -11,8 +11,8 @@ app.use(express.json())
 
 //routes
 app.get('/allContacts', getAllContacts)
-app.get('/Contacts/:name', getContact)
-app.post('/Contact', createContact)
+app.get('/Contacts/:name', getContacts)
+app.post('/Contact', createContacts)
 
 
 // setup routes
