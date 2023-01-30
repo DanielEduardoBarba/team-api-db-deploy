@@ -34,7 +34,7 @@ export async function getContacts(req, res) {
 
    // this filter the contacts by the name matching the name pass in the parameters. 
 const filteredContacts =contacts.filter((x)=>{
-       return x["name"].toLowerCase()===req.params.name.toLowerCase();
+       return String(x["name"]).toLowerCase()===req.params.name.toLowerCase();
     })
 
     res.send(filteredContacts)
